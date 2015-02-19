@@ -54,7 +54,6 @@ if one_test
   trace_files << one_test
 else
   Dir.glob(File.join dir, test_dir + '**/*.rb') do |test|
-    # load all tests
     trace_files << test
     puts "  #{File.basename(test, '.*')}"
     require test
