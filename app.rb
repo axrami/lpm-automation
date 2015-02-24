@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'json'
 require 'pp'
+require 'rake'
 
 mobile_regex = /iPhone|iPad|Android/
 
@@ -11,5 +12,11 @@ get '/' do
   else
     erb :index
   end
+end
+
+get '/rake/iOS' do
+	puts 'hit rake/iOS'
+	# Rake::Task['ios'].invoke
+	`rake ios`
 end
 
