@@ -15,7 +15,7 @@ get '/' do
 end
 
 get '/rake/iOS' do
-	puts 'hit rake/iOS'
+	puts 'See test resutls at https://saucelabs.com/'
 	# Rake::Task['ios'].invoke
 	`rake ios`
 end
