@@ -15,8 +15,11 @@ get '/' do
 end
 
 get '/rake/iOS' do
-	puts 'See test resutls at https://saucelabs.com/'
 	# Rake::Task['ios'].invoke
 	`rake ios`
+end
+
+get '/test/iOS' do
+	erb :index
 end
 
