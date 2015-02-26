@@ -13,7 +13,7 @@ def enable_sauce
 end
 
 # comment out for local testing
-enable_sauce
+# enable_sauce
 
 def using_sauce
   user = ENV['SAUCE_USERNAME']
