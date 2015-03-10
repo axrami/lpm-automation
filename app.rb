@@ -2,6 +2,7 @@ require 'sinatra'
 require 'json'
 require 'pp'
 require 'rake'
+require_relative 'Manager.rb'
 
 mobile_regex = /iPhone|iPad|Android/
 
@@ -14,12 +15,26 @@ get '/' do
   end
 end
 
-get '/rake/iOS' do
-	# Rake::Task['ios'].invoke
-	`rake ios`
+get '/test/ios/?:test_case?' do
+	@test_case = params[:test_case] || nil
+	Manager.ios @test_case
 end
 
-get '/test/iOS' do
-	erb :index
+get '/test/android/?:test_case?' do
+	@test_case = params[:test_case] || nil
+	Manager.android @test_case
+end
+
+get '/test/test' do
+	Manager.test
+end
+
+get '/get_cases/?:platform?' do
+	@platform = params[:platform] || nil
+	if @platform == nil
+		erb :index
+	else
+		Manager.test_cases @platform
+	end
 end
 
