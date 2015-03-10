@@ -16,7 +16,7 @@ $(document).ready(function() {
 
     $( '#android-platform' ).bind( 'click' , function() {
       $.fn.fullpage.moveTo( 0 , 2 );
-    })
+    });
 
   	$( '.back-btn' ).bind( 'click' , function() {
   		$.fn.fullpage.moveTo( 0 , 0);
@@ -34,8 +34,8 @@ $(document).ready(function() {
   var bindTestCases = function( te , platform ) {
     $( '#' + platform + te).bind( 'click' , function() {
       testSelction( te , platform);
-    })
-  }
+    });
+  };
 
   var testSelction = function(te , platform) {
     if (te == undefined){} else {
@@ -60,23 +60,23 @@ $(document).ready(function() {
     $.get( host + "/get_cases/" + platform, function(data) {
       parseTestcase( data , platform );
     });
-  } 
+  };
 
-  var parseTestcase = function(data , platform) {
-    test = JSON.parse( data );
-    test.forEach(function( test ) {
-      var test = test.split( '/' ).pop();
-      test = test.split( '.' );
-      test.pop();
-      test = test[0];
-      addCases( test , platform );
-    });
-  }
+    var parseTestcase = function (data, platform) {
+        var test = JSON.parse(data);
+        test.forEach(function (test) {
+            test = test.split('/').pop();
+            test = test.split('.');
+            test.pop();
+            test = test[0];
+            addCases(test, platform);
+        });
+    };
 
-  var addCases = function(te , platform) {
-    $('#'+ platform +'-testcases').append('<li role="presentation"><a role="menuitem" class="test-sel '+platform+"-test"+'" id="'+ platform + te +'" herf="#">'+te+'</a></li>');
-    bindTestCases( te , platform );
-  }
+    var addCases = function (te, platform) {
+        $('#' + platform + '-testcases').append('<li role="presentation"><a role="menuitem" class="test-sel ' + platform + "-test" + '" id="' + platform + te + '" herf="#">' + te + '</a></li>');
+        bindTestCases(te, platform);
+    };
 
   var init = function() {
     bindBtns();

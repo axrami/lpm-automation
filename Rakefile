@@ -29,7 +29,7 @@ end
 def run_android test_file=nil
   wait_for_valid_device
   cmd = 'bundle exec ruby ./appium/run.rb android'
-  cmd += %Q( "#{test_file}") if test_file
+  cmd += %Q( "#{ test_file }") if test_file
   bash cmd
 end
 
@@ -44,9 +44,9 @@ task :ios, :args, :test_file do |args, test_file|
   test_file = test_file[:args]
   path = File.expand_path('appium.txt', Rake.application.original_dir)
   ENV['APPIUM_TXT'] = path
-  puts "Rake appium.txt path is: #{path}"
+  puts "Rake appium.txt path is: #{ path }"
   cmd = 'bundle exec ruby ./appium/run.rb ios'
-  cmd += %Q( "#{test_file}") if test_file
+  cmd += %Q( "#{ test_file }") if test_file
   bash cmd
 end
 
