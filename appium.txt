@@ -1,9 +1,12 @@
 [caps]
-platformName = "android"
-deviceName = "Nexus 7"
-app = "https://s3-us-west-1.amazonaws.com/lpmobile/EcoSmart_296_debug.apk"
-appPackage = "com.liveperson.mobile.ecosmart"
-appActivity = "com.liveperson.mobile.ecosmart.MainActivity"
+appium-version = "1.3.4"
+deviceName = "iPhone Simulator"
+platformVersion = "8.1"
+platformName = "iOS"
+browserName = ""
+app = "https://s3-us-west-1.amazonaws.com/lpmobile/EcoSmart.zip"
+name = "Ecosmart"
+
 
 [appium_lib]
 debug = true
