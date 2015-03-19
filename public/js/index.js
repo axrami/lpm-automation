@@ -1,66 +1,67 @@
-$(document).ready(function() {
-  $('#fullpage').fullpage({
-    slidesNavigation: false,
-    loopHotizontal: false,
-    loopBottom: true,
-    loopTop: true
-  });
-
-  var host = 'http://localhost:4567',
-      testName = undefined;
-
-  var bindBtns = function() {
-  	$( '#iOS-platform' ).bind( 'click' , function() {
-  		$.fn.fullpage.moveTo( 0 , 1);
-  	});
-
-    $( '#android-platform' ).bind( 'click' , function() {
-      $.fn.fullpage.moveTo( 0 , 2 );
+$(document).ready(function () {
+    $('#fullpage').fullpage({
+        slidesNavigation: false,
+        loopHotizontal: false,
+        loopBottom: true,
+        loopTop: true
     });
 
-  	$( '.back-btn' ).bind( 'click' , function() {
-  		$.fn.fullpage.moveTo( 0 , 0);
-      testName = undefined;
-  	});
-    $('#ios-run-test').bind('click' , function() {
-      runTest('ios');
-    });
-    $('#android-run-test').bind( 'click' , function() {
-      runTest('android');
-    });
-  };
+    var host = 'http://localhost:4567',
+        testName = undefined;
+
+    var bindBtns = function () {
+        $('#iOS-platform').bind('click', function () {
+            $.fn.fullpage.moveTo(0, 1);
+        });
+
+        $('#android-platform').bind('click', function () {
+            $.fn.fullpage.moveTo(0, 2);
+        });
+
+        $('.back-btn').bind('click', function () {
+            $.fn.fullpage.moveTo(0, 0);
+            testName = undefined;
+        });
+        $('#ios-run-test').bind('click', function () {
+            runTest('ios');
+        });
+        $('#android-run-test').bind('click', function () {
+            runTest('android');
+        });
+    };
 
 
-  var bindTestCases = function( te , platform ) {
-    $( '#' + platform + te).bind( 'click' , function() {
-      testSelction( te , platform);
-    });
-  };
+    var bindTestCases = function (te, platform) {
+        $('#' + platform + te).bind('click', function () {
+            testSelction(te, platform);
+        });
+    };
 
-  var testSelction = function(te , platform) {
-    if (te == undefined){} else {
-      $('#'+ platform +'-selection-wrper')
-        .empty()
-        .append('<h2>'+ te + ' selected</h2>');
-      testName = te;
-    }
-  };
+    var testSelction = function (te, platform) {
+        if (te == undefined) {
+        } else {
+            $('#' + platform + '-selection-wrper')
+                .empty()
+                .append('<h2>' + te + ' selected</h2>');
+            testName = te;
+        }
+    };
 
-  var runTest = function( platform ) {
-    if (testName == undefined) {
-      $.get( host + '/test/' + platform , function( data ) {
-        console.log(data);
-      });
-    } else {
-      $.get( host + '/test/' + platform + '/' + testName );
-    }
-  };
+    var runTest = function (platform) {
+        if (testName == undefined) {
+            $.get(host + '/test/' + platform, function (data) {
+                console.log(data);
+            });
+        } else {
+            $.get(host + '/test/' + platform + '/' + testName);
+        }
+    };
 
-  var getTestCase = function(platform) {
-    $.get( host + "/get_cases/" + platform, function(data) {
-      parseTestcase( data , platform );
-    });
-  };
+    var getTestCase = function (platform) {
+        $.get(host + "/get_cases/" + platform, function (data) {
+            parseTestcase(data, platform);
+        });
+    };
 
     var parseTestcase = function (data, platform) {
         var test = JSON.parse(data);
@@ -78,14 +79,14 @@ $(document).ready(function() {
         bindTestCases(te, platform);
     };
 
-  var init = function() {
-    bindBtns();
-    getTestCase('ios');
-    getTestCase('android');
-  };
+    var init = function () {
+        bindBtns();
+        getTestCase('ios');
+        getTestCase('android');
+    };
 
 
-  init();
+    init();
 });
 
 

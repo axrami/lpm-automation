@@ -3,7 +3,10 @@ require 'rake'
 
 
 def run_sh cmd
-  begin; sh cmd; rescue; end
+  begin
+    ; sh cmd;
+  rescue;
+  end
 end
 
 
